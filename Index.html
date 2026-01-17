@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pradip Shrees - Cybersecurity Specialist</title>
+    <meta name="description" content="Pradip Shrees - Expert Cybersecurity Specialist specializing in Network Security, Penetration Testing, and System Troubleshooting">
+    <meta name="keywords" content="cybersecurity, penetration testing, network security, incident response, security assessment">
+    <meta name="author" content="Pradip Shrees">
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Pradip Shrees - Cybersecurity Specialist">
+    <meta property="og:description" content="Expert in Network Security, Penetration Testing, and System Troubleshooting">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pradip Shrees - Cybersecurity Specialist">
+    <meta name="twitter:description" content="Expert in Network Security, Penetration Testing, and System Troubleshooting">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cyber-green': '#00ff88',
+                        'cyber-blue': '#00d4aa',
+                        'cyber-dark': '#0f0f23',
+                        'cyber-dark-alt': '#1a1a2e'
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1s ease forwards',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+                        'matrix-rain': 'matrixRain 20s linear infinite',
+                        'scan': 'scan 2s ease-in-out infinite',
+                        'typewriter': 'typewriter 3s steps(50) 1s forwards'
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 4px 15px rgba(0, 255, 136, 0.3)' },
+                            '50%': { boxShadow: '0 8px 25px rgba(0, 255, 136, 0.6)' }
+                        },
+                        matrixRain: {
+                            '0%': { transform: 'translateY(-100vh)' },
+                            '100%': { transform: 'translateY(100vh)' }
+                        },
+                        scan: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' }
+                        },
+                        typewriter: {
+                            '0%': { width: '0ch' },
+                            '100%': { width: '50ch' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- React & Babel -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    
+    <style>
+        /* Custom CSS for effects not achievable with Tailwind */
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .matrix-char {
+            position: absolute;
+            color: rgba(0, 255, 136, 0.3);
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            animation: matrixRain 20s linear infinite;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+        
+        .scan-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.2), transparent);
+            transition: left 0.6s ease;
+            z-index: 1;
+        }
+        
+        .scan-effect:hover::before {
+            left: 100%;
+        }
+        
+        .loading-spinner {
+            border: 3px solid rgba(0, 255, 136, 0.3);
+            border-top: 3px solid #00ff88;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .binary-rain {
+            position: absolute;
+            color: rgba(0, 255, 136, 0.1);
+            font-family: monospace;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+        const { motion } = window.Motion || { motion: { div: 'div', section: 'section', button: 'button', a: 'a' } };
+
+        // Loading Component
+        const LoadingScreen = ({ isLoading }) => {
+            if (!isLoading) return null;
+            
+            return (
+                <div className="fixed inset-0 bg-cyber-dark z-50 flex items-center justify-center">
+                    <div className="text-center">
+                        <div className="loading-spinner mx-auto mb-4"></div>
+                        <div className="text-cyber-green font-mono text-xl">
+                            <span className="animate-pulse">Initializing Security Protocols...</span>
+                        </div>
+                        <div className="mt-4 font-mono text-sm text-gray-400">
+                            <span className="animate-pulse">01001000 01100101 01101100 01101100 01101111</span>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // Matrix Rain Background Component
+        const MatrixRain = () => {
+            const canvasRef = useRef(null);
+            
+            useEffect(() => {
+                const canvas = canvasRef.current;
+                const ctx = canvas.getContext('2d');
+                
+                const resizeCanvas = () => {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                };
+                
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
+                
+                const chars = '01';
+                const fontSize = 14;
+                const columns = Math.floor(canvas.width / fontSize);
+                const drops = Array(columns).fill(0);
+                
+                const draw = () => {
+                    ctx.fillStyle = 'rgba(15, 15, 35, 0.05)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    ctx.fillStyle = 'rgba(0, 255, 136, 0.3)';
+                    ctx.font = `${fontSize}px monospace`;
+                    
+                    for (let i = 0; i < drops.length; i++) {
+                        const text = chars[Math.floor(Math.random() * chars.length)];
+                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                        
+                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                            drops[i] = 0;
+                        }
+                        drops[i]++;
+                    }
+                };
+                
+                const interval = setInterval(draw, 100);
+                
+                return () => {
+                    clearInterval(interval);
+                    window.removeEventListener('resize', resizeCanvas);
+                };
+            }, []);
+            
+            return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none opacity-20" />;
+        };
+
+        // Navigation Component
+        const Navigation = () => {
+            const [isMenuOpen, setIsMenuOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+            
+            useEffect(() => {
+                const handleScroll = () => {
+                    setScrolled(window.scrollY > 100);
+                };
+                
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+            
+            const navItems = [
+                { href: '#home', label: 'Home' },
+                { href: '#about', label: 'About' },
+                { href: '#projects', label: 'Projects' },
+                { href: '#contact', label: 'Contact' }
+            ];
+            
+            const scrollToSection = (href) => {
+                const element = document.querySelector(href);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+                setIsMenuOpen(false);
+            };
+            
+            return (
+                <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+                    scrolled ? 'bg-cyber-dark/98 backdrop-blur-lg' : 'bg-cyber-dark/95 backdrop-blur-md'
+                } border-b border-cyber-green/10`}>
+                    <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
+                        <a href="#home" className="text-2xl font-bold text-cyber-green glow-text">
+                            Pradip Shrees
+                        </a>
+                        
+                        {/* Desktop Navigation */}
+                        <ul className="hidden md:flex space-x-8">
+                            {navItems.map((item, index) => (
+                                <li key={index}>
+                                    <a 
+                                        href={item.href}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            scrollToSection(item.href);
+                                        }}
+                                        className="text-gray-300 hover:text-cyber-green transition-all duration-300 hover:-translate-y-1 relative group"
+                                    >
+                                        {item.label}
+                                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-green transition-all duration-300 group-hover:w-full"></span>
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                        
+                        {/* Mobile Menu Button */}
+                        <button 
+                            className="md:hidden text-cyber-green focus:outline-none"
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            aria-label="Toggle menu"
+                        >
+                            <div className="w-6 h-6 flex flex-col justify-center items-center space-y-1">
+                                <span className={`block w-6 h-0.5 bg-current transition-transform duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+                                <span className={`block w-6 h-0.5 bg-current transition-opacity duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
+                                <span className={`block w-6 h-0.5 bg-current transition-transform duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+                            </div>
+                        </button>
+                        
+                        {/* Mobile Menu */}
+                        {isMenuOpen && (
+                            <div className="absolute top-full left-0 w-full bg-cyber-dark/98 backdrop-blur-lg border-b border-cyber-green/10 md:hidden">
+                                <ul className="py-4">
+                                    {navItems.map((item, index) => (
+                                        <li key={index}>
+                                            <a 
+                                                href={item.href}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    scrollToSection(item.href);
+                                                }}
+                                                className="block px-6 py-3 text-gray-300 hover:text-cyber-green hover:bg-cyber-green/10 transition-all duration-300"
+                                            >
+                                                {item.label}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </nav>
+                </header>
+            );
+        };
+
+        // Typewriter Component
+        const Typewriter = ({ text, speed = 50 }) => {
+            const [displayText, setDisplayText] = useState('');
+            const [currentIndex, setCurrentIndex] = useState(0);
+            
+            useEffect(() => {
+                if (currentIndex < text.length) {
+                    const timeout = setTimeout(() => {
+                        setDisplayText(text.slice(0, currentIndex + 1));
+                        setCurrentIndex(currentIndex + 1);
+                    }, speed);
+                    
+                    return () => clearTimeout(timeout);
+                }
+            }, [currentIndex, text, speed]);
+            
+            return (
+                <span className="font-mono">
+                    {displayText}
+                    <span className="animate-pulse">|</span>
+                </span>
+            );
+        };
+
+        // Hero Section Component
+        const HeroSection = () => {
+            return (
+                <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-cyber-dark via-cyber-dark-alt to-cyber-dark">
+                    <MatrixRain />
+                    <div className="absolute inset-0 bg-gradient-radial from-cyber-green/10 via-transparent to-transparent"></div>
+                    
+                    <motion.div 
+                        className="text-center z-10 px-4"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1 }}
+                    >
+                        <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyber-green to-cyber-blue bg-clip-text text-transparent glow-text">
+                            Cybersecurity Specialist
+                        </h1>
+                        <div className="text-xl md:text-2xl mb-8 text-gray-300 min-h-[2em] flex items-center justify-center">
+                            <Typewriter text="Network Security • Penetration Testing • Troubleshooting Expert" speed={50} />
+                        </div>
+                        <a 
+                            href="#projects"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                document.querySelector('#projects').scrollIntoView({ behavior: 'smooth' });
+                            }}
+                            className="inline-block px-8 py-4 bg-gradient-to-r from-cyber-green to-cyber-blue text-cyber-dark font-bold rounded-full hover:-translate-y-1 transition-all duration-300 animate-pulse-glow"
+                        >
+                            View My Work
+                        </a>
+                    </motion.div>
+                </section>
+            );
+        };
+
+        // About Section Component
+        const AboutSection = () => {
+            const skills = [
+                { title: 'Network Security', desc: 'Firewall configuration, IDS/IPS, VPN setup' },
+                { title: 'Penetration Testing', desc: 'Web app testing, network pentesting, OSINT' },
+                { title: 'Troubleshooting', desc: 'System diagnostics, network analysis, incident response' },
+                { title: 'Security Tools', desc: 'Wireshark, Nmap, Metasploit, Burp Suite' }
+            ];
+            
+            return (
+                <section id="about" className="py-20 bg-cyber-dark-alt/30">
+                    <div className="container mx-auto px-4">
+                        <motion.h2 
+                            className="text-4xl font-bold text-center mb-12 text-cyber-green glow-text relative"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            viewport={{ once: true }}
+                        >
+                            About Me
+                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-cyber-green to-cyber-blue rounded-full mt-2"></div>
+                        </motion.h2>
+                        
+                        <div className="grid md:grid-cols-2 gap-12 items-center">
+                            <motion.div 
+                                className="space-y-6"
+                                initial={{ opacity: 0, x: -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.6 }}
+                                viewport={{ once: true }}
+                            >
+                                <p className="text-lg text-gray-300 leading-relaxed">
+                                    I'm a passionate cybersecurity professional with expertise in network security, penetration testing, and system troubleshooting. With years of hands-on experience, I specialize in identifying vulnerabilities, securing networks, and implementing robust security solutions.
+                                </p>
+                                
+                                <p className="text-lg text-gray-300 leading-relaxed">
+                                    My approach combines deep technical knowledge with practical problem-solving skills to deliver comprehensive security assessments and solutions that protect organizations from evolving cyber threats.
+                                </p>
+                                
+                                <a 
+                                    href="#resume" 
+                                    className="inline-block px-6 py-3 bg-gradient-to-r from-cyber-green to-cyber-blue text-cyber-dark font-bold rounded-full hover:-translate-y-1 transition-all duration-300 hover:shadow-lg hover:shadow-cyber-green/50"
+                                >
+                                    Download Resume
+                                </a>
+                            </motion.div>
+                            
+                            <motion.div 
+                                className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.6 }}
+                                viewport={{ once: true }}
+                            >
+                                {skills.map((skill, index) => (
+                                    <motion.div 
+                                        key={index}
+                                        className="bg-cyber-green/10 p-6 rounded-xl border border-cyber-green/20 hover:bg-cyber-green/20 hover:-translate-y-2 hover:shadow-lg hover:shadow-cyber-green/30 transition-all duration-300 cursor-pointer"
+                                        whileHover={{ scale: 1.05 }}
+                                    >
+                                        <h3 className="text-xl font-bold text-cyber-green mb-2">{skill.title}</h3>
+                                        <p className="text-gray-400 text-sm">{skill.desc}</p>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Project Card Component
+        const ProjectCard = ({ project }) => {
+            return (
+                <motion.div 
+                    className="bg-cyber-dark-alt/60 rounded-xl p-6 border border-cyber-green/20 hover:border-cyber-green/40 transition-all duration-300 relative overflow-hidden scan-effect group"
+                    whileHover={{ y: -10, rotateX: 5 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                >
+                    <span className="inline-block bg-cyber-green/20 text-cyber-green px-3 py-1 rounded-full text-sm font-medium mb-4">
+                        {project.category}
+                    </span>
+                    
+                    <h3 className="text-xl font-bold text-white mb-4 group-hover:text-cyber-green transition-colors duration-300">
+                        {project.title}
+                    </h3>
+                    
+                    <p className="text-gray-400 mb-6 leading-relaxed">
+                        {project.description}
+                    </p>
+                    
+                    <div className="flex flex-wrap gap-2 mb-6">
+                        {project.tech.map((tech, index) => (
+                            <span key={index} className="bg-cyber-blue/20 text-cyber-blue px-3 py-1 rounded-full text-xs">
+                                {tech}
+                            </span>
+                        ))}
+                    </div>
+                    
+                    <a 
+                        href="#"
+                        className="text-cyber-green font-bold hover:text-cyber-blue transition-colors duration-300 inline-flex items-center group"
+                    >
+                        {project.linkText}
+                        <span className="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">→</span>
+                    </a>
+                </motion.div>
+            );
+        };
+
+        // Projects Section Component
+        const ProjectsSection = () => {
+            const [filter, setFilter] = useState('All');
+            
+            const projects = [
+                {
+                    category: 'Penetration Testing',
+                    title: 'Enterprise Network Assessment',
+                    description: 'Comprehensive penetration test of a Fortune 500 company\'s network infrastructure, identifying critical vulnerabilities and providing detailed remediation strategies.',
+                    tech: ['Nmap', 'Metasploit', 'Wireshark', 'OWASP ZAP'],
+                    linkText: 'View Case Study'
+                },
+                {
+                    category: 'Network Security',
+                    title: 'Zero-Trust Network Architecture',
+                    description: 'Designed and implemented a zero-trust security model for a mid-sized organization, reducing security incidents by 85% and improving compliance posture.',
+                    tech: ['Cisco ASA', 'pfSense', 'Suricata', 'ELK Stack'],
+                    linkText: 'View Details'
+                },
+                {
+                    category: 'Incident Response',
+                    title: 'Malware Analysis & Containment',
+                    description: 'Led incident response for a sophisticated APT attack, successfully containing the breach and implementing preventive measures to avoid future compromises.',
+                    tech: ['Volatility', 'YARA', 'Splunk', 'Snort'],
+                    linkText: 'Read Report'
+                },
+                {
+                    category: 'Web Security',
+                    title: 'Web Application Security Assessment',
+                    description: 'Performed comprehensive security testing of a critical e-commerce platform, identifying and helping remediate multiple OWASP Top 10 vulnerabilities.',
+                    tech: ['Burp Suite', 'OWASP ZAP', 'SQLMap', 'Nikto'],
+                    linkText: 'View Analysis'
+                },
+                {
+                    category: 'Network Troubleshooting',
+                    title: 'Performance Optimization Suite',
+                    description: 'Developed a comprehensive network monitoring and troubleshooting framework that reduced network downtime by 60% and improved overall performance.',
+                    tech: ['PRTG', 'Cacti', 'Nagios', 'Python'],
+                    linkText: 'Learn More'
+                },
+                {
+                    category: 'Red Team',
+                    title: 'Social Engineering Campaign',
+                    description: 'Executed a comprehensive red team assessment including social engineering tactics, achieving 92% success rate in initial access and providing security awareness training.',
+                    tech: ['SET', 'Cobalt Strike', 'GoPhish', 'OSINT'],
+                    linkText: 'View Results'
+                }
+            ];
+            
+            const categories = ['All', ...new Set(projects.map(project => project.category))];
+            const filteredProjects = filter === 'All' ? projects : projects.filter(project => project.category === filter);
+            
+            return (
+                <section id="projects" className="py-20 bg-cyber-dark">
+                    <div className="container mx-auto px-4">
+                        <motion.h2 
+                            className="text-4xl font-bold text-center mb-12 text-cyber-green glow-text relative"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            viewport={{ once: true }}
+                        >
+                            Featured Projects
+                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-cyber-green to-cyber-blue rounded-full mt-2"></div>
+                        </motion.h2>
+                        
+                        {/* Filter Buttons */}
+                        <div className="flex flex-wrap justify-center gap-4 mb-12">
+                            {categories.map((category) => (
+                                <button
+                                    key={category}
+                                    onClick={() => setFilter(category)}
+                                    className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+                                        filter === category 
+                                            ? 'bg-cyber-green text-cyber-dark shadow-lg shadow-cyber-green/50' 
+                                            : 'bg-cyber-green/10 text-cyber-green hover:bg-cyber-green/20 border border-cyber-green/30'
+                                    }`}
+                                >
+                                    {category}
+                                </button>
+                            ))}
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                            {filteredProjects.map((project, index) => (
+                                <ProjectCard key={index} project={project} />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Contact Form Component
+        const ContactForm = () => {
+            const [formData, setFormData] = useState({
+                name: '',
+                email: '',
+                message: ''
+            });
+            
+            const handleChange = (e) => {
+                setFormData({
+                    ...formData,
+                    [e.target.name]: e.target.value
+                });
+            };
+            
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                // Placeholder action - no actual submission in sandbox
+                alert('Thank you for your message! This is a demo form.');
+            };
+            
+            return (
+                <div className="max-w-md mx-auto">
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        <div>
+                            <label className="block text-cyber-green text-sm font-medium mb-2" htmlFor="name">
+                                Name
+                            </label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                className="w-full px-4 py-3 bg-cyber-dark-alt/50 border border-cyber-green/30 rounded-lg focus:border-cyber-green focus:outline-none focus:ring-2 focus:ring-cyber-green/20 text-white transition-all duration-300"
+                                required
+                            />
+                        </div>
+                        
+                        <div>
+                            <label className="block text-cyber-green text-sm font-medium mb-2" htmlFor="email">
+                                Email
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                className="w-full px-4 py-3 bg-cyber-dark-alt/50 border border-cyber-green/30 rounded-lg focus:border-cyber-green focus:outline-none focus:ring-2 focus:ring-cyber-green/20 text-white transition-all duration-300"
+                                required
+                            />
+                        </div>
+                        
+                        <div>
+                            <label className="block text-cyber-green text-sm font-medium mb-2" htmlFor="message">
+                                Message
+                            </label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows={4}
+                                value={formData.message}
+                                onChange={handleChange}
+                                className="w-full px-4 py-3 bg-cyber-dark-alt/50 border border-cyber-green/30 rounded-lg focus:border-cyber-green focus:outline-none focus:ring-2 focus:ring-cyber-green/20 text-white transition-all duration-300 resize-none"
+                                required
+                            ></textarea>
+                        </div>
+                        
+                        <button
+                            type="submit"
+                            className="w-full px-6 py-3 bg-gradient-to-r from-cyber-green to-cyber-blue text-cyber-dark font-bold rounded-lg hover:-translate-y-1 transition-all duration-300 hover:shadow-lg hover:shadow-cyber-green/50"
+                        >
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            );
+        };
+
+        // Contact Section Component
+        const ContactSection = () => {
+            const contactItems = [
+                { icon: '📧', title: 'Email', info: 'pradip.shrees@cybersec.pro' },
+                { icon: '💼', title: 'LinkedIn', info: 'linkedin.com/in/pradipshrees-cyber' },
+                { icon: '🔗', title: 'GitHub', info: 'github.com/pradipshrees-security' }
+            ];
+            
+            return (
+                <section id="contact" className="py-20 bg-cyber-dark-alt/30">
+                    <div className="container mx-auto px-4">
+                        <motion.h2 
+                            className="text-4xl font-bold text-center mb-12 text-cyber-green glow-text relative"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            viewport={{ once: true }}
+                        >
+                            Get In Touch
+                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-cyber-green to-cyber-blue rounded-full mt-2"></div>
+                        </motion.h2>
+                        
+                        <div className="text-center mb-12">
+                            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+                                Ready to secure your network? Let's discuss how I can help strengthen your cybersecurity posture.
+                            </p>
+                        </div>
+                        
+                        <div className="grid lg:grid-cols-2 gap-12 items-start">
+                            <motion.div
+                                initial={{ opacity: 0, x: -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.6 }}
+                                viewport={{ once: true }}
+                            >
+                                <h3 className="text-2xl font-bold text-cyber-green mb-6">Send a Message</h3>
+                                <ContactForm />
+                            </motion.div>
+                            
+                            <motion.div
+                                className="space-y-6"
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.6 }}
+                                viewport={{ once: true }}
+                            >
+                                <h3 className="text-2xl font-bold text-cyber-green mb-6">Contact Information</h3>
+                                {contactItems.map((item, index) => (
+                                    <motion.div 
+                                        key={index}
+                                        className="bg-cyber-green/10 p-6 rounded-xl border border-cyber-green/20 hover:bg-cyber-green/20 hover:-translate-y-2 hover:shadow-lg hover:shadow-cyber-green/30 transition-all duration-300 cursor-pointer"
+                                        whileHover={{ scale: 1.02 }}
+                                    >
+                                        <div className="flex items-center space-x-4">
+                                            <div className="text-3xl">{item.icon}</div>
+                                            <div>
+                                                <h4 className="text-lg font-bold text-cyber-green">{item.title}</h4>
+                                                <p className="text-gray-400">{item.info}</p>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Back to Top Button Component
+        const BackToTop = () => {
+            const [showButton, setShowButton] = useState(false);
+            
+            useEffect(() => {
+                const handleScroll = () => {
+                    setShowButton(window.scrollY > 300);
+                };
+                
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+            
+            const scrollToTop = () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+            
+            if (!showButton) return null;
+            
+            return (
+                <motion.button
+                    onClick={scrollToTop}
+                    className="fixed bottom-8 right-8 bg-gradient-to-r from-cyber-green to-cyber-blue text-cyber-dark p-3 rounded-full shadow-lg hover:shadow-xl hover:shadow-cyber-green/50 transition-all duration-300 z-40"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    aria-label="Back to top"
+                >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                    </svg>
+                </motion.button>
+            );
+        };
+
+        // Footer Component
+        const Footer = () => {
+            const socialLinks = [
+                { href: 'https://linkedin.com/in/pradipshrees-cyber', icon: '💼', label: 'LinkedIn' },
+                { href: 'https://github.com/pradipshrees-security', icon: '🔗', label: 'GitHub' }
+            ];
+            
+            return (
+                <footer className="bg-cyber-dark/80 border-t border-cyber-green/10 py-8">
+                    <div className="container mx-auto px-4">
+                        <div className="flex flex-col md:flex-row justify-between items-center">
+                            <p className="text-gray-400 text-center md:text-left mb-4 md:mb-0">
+                                &copy; 2025 Pradip Shrees. All rights reserved. | Cybersecurity Professional
+                            </p>
+                            
+                            <div className="flex space-x-4">
+                                {socialLinks.map((link, index) => (
+                                    <a
+                                        key={index}
+                                        href={link.href}
+                                        className="text-2xl hover:text-cyber-green transition-colors duration-300 hover:-translate-y-1 transform"
+                                        aria-label={link.label}
+                                    >
+                                        {link.icon}
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            );
+        };
+
+        // Main App Component
+        const App = () => {
+            const [isLoading, setIsLoading] = useState(true);
+            
+            useEffect(() => {
+                // Simulate loading time
+                const timer = setTimeout(() => {
+                    setIsLoading(false);
+                }, 2000);
+                
+                return () => clearTimeout(timer);
+            }, []);
+            
+            useEffect(() => {
+                // Smooth scrolling for anchor links
+                const handleAnchorClick = (e) => {
+                    const href = e.target.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const element = document.querySelector(href);
+                        if (element) {
+                            element.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                };
+                
+                document.addEventListener('click', handleAnchorClick);
+                return () => document.removeEventListener('click', handleAnchorClick);
+            }, []);
+            
+            return (
+                <div className="min-h-screen bg-gradient-to-br from-cyber-dark via-cyber-dark-alt to-cyber-dark text-gray-100">
+                    <LoadingScreen isLoading={isLoading} />
+                    
+                    {!isLoading && (
+                        <>
+                            <Navigation />
+                            <HeroSection />
+                            <AboutSection />
+                            <ProjectsSection />
+                            <ContactSection />
+                            <Footer />
+                            <BackToTop />
+                        </>
+                    )}
+                </div>
+            );
+        };
+
+        // Render the app
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
