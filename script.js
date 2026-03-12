@@ -54,6 +54,14 @@
     });
   }
 
+  // Back to top — use scrollTo for reliability with sticky header
+  document.querySelectorAll('a[href="#top"]').forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+
   // Fake contact submit
   const fakeSubmit = document.getElementById("fakeSubmit");
   const formNote = document.getElementById("formNote");

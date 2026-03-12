@@ -17,10 +17,11 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div id="top" style="position:absolute;top:0;left:0;"></div>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- Header / Nav -->
-  <header class="header" id="top">
+  <header class="header">
     <div class="container nav">
       <a class="brand" href="#top" aria-label="Go to top">
         <span class="brand-dot"></span>
@@ -87,10 +88,10 @@
             <a class="btn" href="#contact">
               <i class="fa-regular fa-paper-plane"></i> Contact
             </a>
-            <a class="btn ghost" href="https://github.com/" target="_blank" rel="noreferrer">
+            <a class="btn ghost" href="https://github.com/PradipShrees" target="_blank" rel="noreferrer">
               <i class="fa-brands fa-github"></i> GitHub
             </a>
-            <a class="btn ghost" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+            <a class="btn ghost" href="https://www.linkedin.com/in/pradip-shrees-776b612a1/" target="_blank" rel="noreferrer">
               <i class="fa-brands fa-linkedin"></i> LinkedIn
             </a>
           </div>
@@ -114,7 +115,7 @@
         <div class="hero-card">
           <div class="profile">
             <div class="profile-img" role="img" aria-label="Profile image placeholder">
-              <!-- Optional: replace with <img src="assets/profile.jpg" alt="Your profile photo" /> -->
+              <!-- Replace with: <img src="assets/profile.jpg" alt="Pradip Shrees profile photo" /> -->
               <i class="fa-solid fa-user"></i>
             </div>
 
@@ -137,7 +138,7 @@
           <div class="note">
             <i class="fa-solid fa-lightbulb"></i>
             <p>
-              I’m building a portfolio that demonstrates industry-ready fundamentals:
+              I'm building a portfolio that demonstrates industry-ready fundamentals:
               clean network thinking, secure-by-design habits, and practical cloud skills.
             </p>
           </div>
@@ -159,7 +160,7 @@
           <div class="card">
             <h3>Profile Summary</h3>
             <p>
-              I’m a motivated Bachelor of Information Technology student with a strong foundation in networking and cloud fundamentals.
+              I'm a motivated Bachelor of Information Technology student with a strong foundation in networking and cloud fundamentals.
               I enjoy building labs and projects that translate theory into real skills — from AWS VPC design and EC2 deployments
               to DNS filtering with Pi-hole and security-focused Linux labs.
             </p>
@@ -170,7 +171,7 @@
           </div>
 
           <div class="card">
-            <h3>What I’m focusing on (2026)</h3>
+            <h3>What I'm focusing on (2026)</h3>
             <div class="pill-row">
               <span class="pill"><i class="fa-solid fa-network-wired"></i> CCNA fundamentals</span>
               <span class="pill"><i class="fa-brands fa-aws"></i> AWS VPC + IAM</span>
@@ -287,10 +288,10 @@
           <!-- Project 1 -->
           <article class="card project-card">
             <div class="project-media">
-              <img src="assets/pihole.png" alt="Pi-hole dashboard or lab screenshot (replace with your image)" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <img src="screenshots/pi-hole.png" alt="Pi-hole dashboard screenshot" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="media-fallback" style="display:none;">
-                <i class="fa-solid fa-image"></i>
-                <span>Add screenshot: assets/pihole.png</span>
+                <i class="fa-solid fa-shield fa-2x"></i>
+                <span>Pi-hole Network Lab</span>
               </div>
             </div>
 
@@ -307,28 +308,25 @@
               <div class="project-details">
                 <div class="detail">
                   <h4>Problem</h4>
-                  <p>Reduce unwanted ads/trackers and improve DNS-level security for home devices.</p>
+                  <p class="muted">Reduce unwanted ads/trackers and improve DNS-level security for home devices.</p>
                 </div>
                 <div class="detail">
                   <h4>Tools used</h4>
-                  <p>Pi-hole, Linux, CLI, Router/DHCP, DNS concepts</p>
+                  <p class="muted">Pi-hole, Linux, CLI, Router/DHCP, DNS concepts</p>
                 </div>
                 <div class="detail">
                   <h4>What I built</h4>
-                  <p>Configured Pi-hole, set DNS on clients/network, validated filtering across devices.</p>
+                  <p class="muted">Configured Pi-hole, set DNS on clients/network, validated filtering across devices.</p>
                 </div>
                 <div class="detail">
                   <h4>Skills demonstrated</h4>
-                  <p>Linux admin, DNS, networking troubleshooting, security awareness</p>
+                  <p class="muted">Linux admin, DNS, networking troubleshooting, security awareness</p>
                 </div>
               </div>
 
               <div class="project-links">
-                <a class="btn small" href="#" target="_blank" rel="noreferrer">
-                  <i class="fa-brands fa-github"></i> Repo (add link)
-                </a>
-                <a class="btn small ghost" href="#" target="_blank" rel="noreferrer">
-                  <i class="fa-solid fa-file-lines"></i> Documentation (add link)
+                <a class="btn small" href="https://github.com/PradipShrees/Linux-Home-Lab/tree/main/Pi-Hole-Lab" target="_blank" rel="noreferrer">
+                  <i class="fa-brands fa-github"></i> View on GitHub
                 </a>
               </div>
             </div>
@@ -337,10 +335,10 @@
           <!-- Project 2 -->
           <article class="card project-card">
             <div class="project-media">
-              <img src="assets/air-quality.png" alt="Air quality monitoring diagram/screenshot (replace with your image)" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <img src="screenshots/Load-balancer resource-map.png" alt="Load balancer resource map" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="media-fallback" style="display:none;">
-                <i class="fa-solid fa-image"></i>
-                <span>Add screenshot: assets/air-quality.png</span>
+                <i class="fa-solid fa-leaf fa-2x"></i>
+                <span>Air Quality Monitoring System</span>
               </div>
             </div>
 
@@ -357,28 +355,25 @@
               <div class="project-details">
                 <div class="detail">
                   <h4>Problem</h4>
-                  <p>Capture and upload real-time environmental readings for monitoring and analysis.</p>
+                  <p class="muted">Capture and upload real-time environmental readings for monitoring and analysis.</p>
                 </div>
                 <div class="detail">
                   <h4>Tools used</h4>
-                  <p>Raspberry Pi 5, Sensors, Python, Firebase</p>
+                  <p class="muted">Raspberry Pi 5, Sensors, Python, Firebase</p>
                 </div>
                 <div class="detail">
                   <h4>What I built</h4>
-                  <p>Sensor integration, data collection pipeline, cloud upload + structure.</p>
+                  <p class="muted">Sensor integration, data collection pipeline, cloud upload + structure.</p>
                 </div>
                 <div class="detail">
                   <h4>Skills demonstrated</h4>
-                  <p>IoT, cloud integration, data pipeline thinking, hardware + software integration</p>
+                  <p class="muted">IoT, cloud integration, data pipeline thinking, hardware + software integration</p>
                 </div>
               </div>
 
               <div class="project-links">
-                <a class="btn small" href="#" target="_blank" rel="noreferrer">
-                  <i class="fa-brands fa-github"></i> Repo (add link)
-                </a>
-                <a class="btn small ghost" href="#" target="_blank" rel="noreferrer">
-                  <i class="fa-solid fa-sitemap"></i> Architecture (add link)
+                <a class="btn small" href="https://github.com/PradipShrees/Air-Pollution-Monitoring-Project-1" target="_blank" rel="noreferrer">
+                  <i class="fa-brands fa-github"></i> View on GitHub
                 </a>
               </div>
             </div>
@@ -387,10 +382,9 @@
           <!-- Project 3 -->
           <article class="card project-card">
             <div class="project-media">
-              <img src="assets/aws-labs.png" alt="AWS labs VPC diagram/screenshot (replace with your image)" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-              <div class="media-fallback" style="display:none;">
-                <i class="fa-solid fa-image"></i>
-                <span>Add screenshot: assets/aws-labs.png</span>
+              <div class="media-fallback">
+                <i class="fa-brands fa-aws fa-2x"></i>
+                <span>AWS Cloud Labs</span>
               </div>
             </div>
 
@@ -407,34 +401,74 @@
               <div class="project-details">
                 <div class="detail">
                   <h4>Problem</h4>
-                  <p>Build practical cloud networking skills aligned with junior cloud/network roles.</p>
+                  <p class="muted">Build practical cloud networking skills aligned with junior cloud/network roles.</p>
                 </div>
                 <div class="detail">
                   <h4>Tools used</h4>
-                  <p>AWS (EC2, VPC, Endpoints, IAM, Budgets), CLI basics</p>
+                  <p class="muted">AWS (EC2, VPC, Endpoints, IAM, Budgets), CLI basics</p>
                 </div>
                 <div class="detail">
                   <h4>What I built</h4>
-                  <p>VPC designs, subnet routing, endpoint configs, IAM permission boundaries, cost alerts.</p>
+                  <p class="muted">VPC designs, subnet routing, endpoint configs, IAM permission boundaries, cost alerts.</p>
                 </div>
                 <div class="detail">
                   <h4>Skills demonstrated</h4>
-                  <p>Cloud architecture, network segmentation, identity & access control, cost awareness</p>
+                  <p class="muted">Cloud architecture, network segmentation, identity & access control, cost awareness</p>
                 </div>
               </div>
 
               <div class="project-links">
-                <a class="btn small" href="#" target="_blank" rel="noreferrer">
-                  <i class="fa-brands fa-github"></i> Repo (add link)
-                </a>
-                <a class="btn small ghost" href="#" target="_blank" rel="noreferrer">
-                  <i class="fa-solid fa-diagram-project"></i> Diagrams (add link)
+                <a class="btn small" href="https://github.com/PradipShrees/AWS-LAB-AND-DOCUMENTATION" target="_blank" rel="noreferrer">
+                  <i class="fa-brands fa-github"></i> View on GitHub
                 </a>
               </div>
             </div>
           </article>
-        </div>
 
+          <!-- Project 4 — Coming Soon -->
+          <article class="card project-card">
+            <div class="project-media">
+              <div class="media-fallback">
+                <i class="fa-brands fa-docker fa-2x"></i>
+                <span>CI/CD Pipeline</span>
+              </div>
+            </div>
+
+            <div class="project-body">
+              <div class="project-top">
+                <h3>CI/CD Pipeline with GitHub Actions</h3>
+                <span class="tag"><i class="fa-brands fa-docker"></i> Docker • Kali • Pi 5</span>
+              </div>
+
+              <p class="muted">
+                Automated deployment pipeline using GitHub Actions, with a Kali Linux–powered Raspberry Pi 5 as the self-hosted runner and Docker as the container runtime.
+              </p>
+
+              <div class="project-details">
+                <div class="detail">
+                  <h4>Problem</h4>
+                  <p class="muted">Automate builds and deployments to a local server without relying on cloud CI runners.</p>
+                </div>
+                <div class="detail">
+                  <h4>Tools used</h4>
+                  <p class="muted">GitHub Actions, Docker, Kali Linux, Raspberry Pi 5</p>
+                </div>
+                <div class="detail">
+                  <h4>What I built</h4>
+                  <p class="muted">Self-hosted runner setup, Docker containerisation, automated push-to-deploy workflow.</p>
+                </div>
+                <div class="detail">
+                  <h4>Skills demonstrated</h4>
+                  <p class="muted">CI/CD, DevOps fundamentals, containerisation, Linux server admin</p>
+                </div>
+              </div>
+
+              <div class="project-links">
+                <span class="tag"><i class="fa-solid fa-clock"></i> In progress — coming soon</span>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -443,7 +477,7 @@
       <div class="container">
         <div class="section-head">
           <h2>Certifications & Qualifications</h2>
-          <p class="muted">Clear and scannable — what you’ve achieved + what you’re actively working on.</p>
+          <p class="muted">What I've achieved and what I'm actively working toward.</p>
         </div>
 
         <div class="cards-grid">
@@ -459,7 +493,7 @@
 
           <div class="card">
             <h3><i class="fa-solid fa-network-wired"></i> CCNA</h3>
-            <p class="muted">In progress — Target completion: <strong>July</strong></p>
+            <p class="muted">In progress — Target completion: <strong>July 2026</strong></p>
           </div>
 
           <div class="card">
@@ -475,7 +509,7 @@
       <div class="container">
         <div class="section-head">
           <h2>Experience</h2>
-          <p class="muted">Highlights transferable strengths: communication, teaching, problem solving.</p>
+          <p class="muted">Transferable strengths: communication, teaching, and problem solving.</p>
         </div>
 
         <div class="timeline">
@@ -499,61 +533,34 @@
       <div class="container">
         <div class="section-head">
           <h2>Contact</h2>
-          <p class="muted">Simple, professional, and recruiter-friendly.</p>
+          <p class="muted">Open to junior networking, cloud, and security roles — feel free to reach out.</p>
         </div>
 
         <div class="grid-2">
           <div class="card">
-            <h3>Let’s connect</h3>
+            <h3>Let's connect</h3>
             <p class="muted">
-              If you’re hiring for junior networking / cloud / security roles, I’d love to connect and share my labs, projects, and documentation.
+              If you're hiring for junior networking / cloud / security roles, I'd love to connect and share my labs, projects, and documentation.
             </p>
 
             <div class="contact-list">
-              <a class="contact-item" href="mailto:your.email@example.com">
+              <a class="contact-item" href="mailto:pradipshrees0@gmail.com">
                 <i class="fa-regular fa-envelope"></i>
-                <span>your.email@example.com</span>
+                <span>pradipshrees0@gmail.com</span>
               </a>
-              <a class="contact-item" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+              <a class="contact-item" href="https://www.linkedin.com/in/pradip-shrees-776b612a1/" target="_blank" rel="noreferrer">
                 <i class="fa-brands fa-linkedin"></i>
-                <span>LinkedIn (add link)</span>
+                <span>linkedin.com/in/pradip-shrees-776b612a1</span>
               </a>
-              <a class="contact-item" href="https://github.com/" target="_blank" rel="noreferrer">
+              <a class="contact-item" href="https://github.com/PradipShrees" target="_blank" rel="noreferrer">
                 <i class="fa-brands fa-github"></i>
-                <span>GitHub (add link)</span>
+                <span>github.com/PradipShrees</span>
               </a>
               <div class="contact-item">
                 <i class="fa-solid fa-location-dot"></i>
                 <span>Sydney, Australia</span>
               </div>
             </div>
-          </div>
-
-          <div class="card">
-            <h3>Quick message (optional)</h3>
-            <p class="muted">
-              GitHub Pages is static, so this form is for design only.
-              If you want it to send messages, connect it to AWS (API Gateway + Lambda).
-            </p>
-
-            <form class="form" onsubmit="return false;">
-              <label>
-                Name
-                <input type="text" placeholder="Your name" autocomplete="name" />
-              </label>
-              <label>
-                Email
-                <input type="email" placeholder="you@example.com" autocomplete="email" />
-              </label>
-              <label>
-                Message
-                <textarea rows="4" placeholder="Write your message..."></textarea>
-              </label>
-              <button class="btn primary" type="button" id="fakeSubmit">
-                <i class="fa-regular fa-paper-plane"></i> Send
-              </button>
-              <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
-            </form>
           </div>
         </div>
       </div>
