@@ -41,7 +41,6 @@
         <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle theme">
           <i class="fa-solid fa-moon"></i>
         </button>
-
         <button class="icon-btn mobile-menu-btn" id="menuToggle" type="button" aria-label="Open menu">
           <i class="fa-solid fa-bars"></i>
         </button>
@@ -51,18 +50,19 @@
     <!-- Mobile menu -->
     <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
       <div class="container">
-        <a href="#about" class="m-link">About</a>
-        <a href="#skills" class="m-link">Skills</a>
-        <a href="#projects" class="m-link">Projects</a>
-        <a href="#certs" class="m-link">Certifications</a>
+        <a href="#about"      class="m-link">About</a>
+        <a href="#skills"     class="m-link">Skills</a>
+        <a href="#projects"   class="m-link">Projects</a>
+        <a href="#certs"      class="m-link">Certifications</a>
         <a href="#experience" class="m-link">Experience</a>
-        <a href="#contact" class="m-link">Contact</a>
+        <a href="#contact"    class="m-link">Contact</a>
       </div>
     </div>
   </header>
 
   <main id="main">
-    <!-- Hero -->
+
+    <!-- ═══ Hero ═══════════════════════════════════════════════════ -->
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-text">
@@ -73,12 +73,13 @@
 
           <h1>
             Junior <span class="grad">Network Engineer</span> /
-            <span class="grad">Cloud</span> & <span class="grad">Cybersecurity</span>
+            <span class="grad">Cloud</span> &amp; <span class="grad">Cybersecurity</span>
           </h1>
 
           <p class="lead">
-            AWS Certified Cloud Practitioner, CCNA in progress, and building hands-on labs in networking, cloud infrastructure,
-            and cybersecurity. I focus on real projects, clean documentation, and continuous improvement.
+            AWS Certified Cloud Practitioner, CCNA in progress, and building hands-on labs in
+            networking, cloud infrastructure, and cybersecurity. I focus on real projects, clean
+            documentation, and continuous improvement.
           </p>
 
           <div class="hero-cta">
@@ -115,7 +116,7 @@
         <div class="hero-card">
           <div class="profile">
             <div class="profile-img" role="img" aria-label="Profile image placeholder">
-              <!-- Replace with: <img src="assets/profile.jpg" alt="Pradip Shrees profile photo" /> -->
+              <!-- Replace with: <img src="assets/profile.jpg" alt="Pradip Shrees" /> -->
               <i class="fa-solid fa-user"></i>
             </div>
 
@@ -146,13 +147,14 @@
       </div>
     </section>
 
-    <!-- About -->
+    <!-- ═══ About ════════════════════════════════════════════════ -->
     <section class="section" id="about">
       <div class="container">
         <div class="section-head">
           <h2>About Me</h2>
           <p class="muted">
-            BIT student graduating July 2026. Building toward a junior role in networking, cloud infrastructure, and cybersecurity.
+            BIT student graduating July 2026. Building toward a junior role in networking,
+            cloud infrastructure, and cybersecurity.
           </p>
         </div>
 
@@ -160,13 +162,15 @@
           <div class="card">
             <h3>Profile Summary</h3>
             <p>
-              I'm a motivated Bachelor of Information Technology student with a strong foundation in networking and cloud fundamentals.
-              I enjoy building labs and projects that translate theory into real skills — from AWS VPC design and EC2 deployments
-              to DNS filtering with Pi-hole and security-focused Linux labs.
+              I'm a motivated Bachelor of Information Technology student with a strong foundation
+              in networking and cloud fundamentals. I enjoy building labs and projects that
+              translate theory into real skills — from AWS VPC design and EC2 deployments to DNS
+              filtering with Pi-hole and security-focused Linux labs.
             </p>
             <p>
-              My goal is to become a <strong>Junior Network Engineer</strong> and grow into a <strong>Cloud & Cybersecurity professional</strong>
-              through consistent practice, certifications, and well-documented technical work.
+              My goal is to become a <strong>Junior Network Engineer</strong> and grow into a
+              <strong>Cloud &amp; Cybersecurity professional</strong> through consistent practice,
+              certifications, and well-documented technical work.
             </p>
           </div>
 
@@ -178,7 +182,7 @@
               <span class="pill"><i class="fa-solid fa-shield"></i> Network security basics</span>
               <span class="pill"><i class="fa-solid fa-terminal"></i> Linux + CLI confidence</span>
               <span class="pill"><i class="fa-brands fa-python"></i> Python automation</span>
-              <span class="pill"><i class="fa-solid fa-book"></i> Documentation & learning logs</span>
+              <span class="pill"><i class="fa-solid fa-book"></i> Documentation &amp; learning logs</span>
             </div>
 
             <div class="divider"></div>
@@ -195,7 +199,7 @@
       </div>
     </section>
 
-    <!-- Skills -->
+    <!-- ═══ Skills ═══════════════════════════════════════════════ -->
     <section class="section alt" id="skills">
       <div class="container">
         <div class="section-head">
@@ -221,10 +225,10 @@
             <h3>Cloud (AWS)</h3>
             <ul class="list">
               <li>EC2 deployments</li>
-              <li>VPC, Subnets & Endpoints</li>
-              <li>IAM Policies & Access Control</li>
-              <li>AWS Budgets & monitoring basics</li>
-              <li>Cloud fundamentals & architecture</li>
+              <li>VPC, Subnets &amp; Endpoints</li>
+              <li>IAM Policies &amp; Access Control</li>
+              <li>AWS Budgets &amp; monitoring basics</li>
+              <li>Cloud fundamentals &amp; architecture</li>
             </ul>
           </article>
 
@@ -252,7 +256,7 @@
 
           <article class="card skill-card">
             <div class="card-icon"><i class="fa-solid fa-code"></i></div>
-            <h3>Programming & Tools</h3>
+            <h3>Programming &amp; Tools</h3>
             <ul class="list">
               <li>Python (learning — automation focus)</li>
               <li>GitHub</li>
@@ -276,7 +280,7 @@
       </div>
     </section>
 
-    <!-- Projects -->
+    <!-- ═══ Projects ═════════════════════════════════════════════ -->
     <section class="section" id="projects">
       <div class="container">
         <div class="section-head">
@@ -285,10 +289,12 @@
         </div>
 
         <div class="project-grid">
-          <!-- Project 1 -->
+
+          <!-- Project 1 — Pi-hole -->
           <article class="card project-card">
             <div class="project-media">
-            
+              <img src="screenshots/pi-hole.png" alt="Pi-hole dashboard screenshot"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="media-fallback" style="display:none;">
                 <i class="fa-solid fa-shield fa-2x"></i>
                 <span>Pi-hole Network Lab</span>
@@ -302,7 +308,8 @@
               </div>
 
               <p class="muted">
-                Built a DNS-based ad-blocking and filtering system using Pi-hole, deployed in a home lab environment to improve privacy and reduce malicious domains.
+                Built a DNS-based ad-blocking and filtering system using Pi-hole, deployed in a
+                home lab environment to improve privacy and reduce malicious domains.
               </p>
 
               <div class="project-details">
@@ -325,18 +332,20 @@
               </div>
 
               <div class="project-links">
-                <a class="btn small" href="https://github.com/PradipShrees/Linux-Home-Lab/tree/main/Pi-Hole-Lab" target="_blank" rel="noreferrer">
+                <a class="btn small" href="https://github.com/PradipShrees/Linux-Home-Lab/tree/main/Pi-Hole-Lab"
+                   target="_blank" rel="noreferrer">
                   <i class="fa-brands fa-github"></i> View on GitHub
                 </a>
               </div>
             </div>
           </article>
 
-          <!-- Project 2 -->
+          <!-- Project 2 — Air Quality (Capstone) -->
           <article class="card project-card">
             <div class="project-media">
-              <img src="screenshots/Load-balancer resource-map.png" alt="Load balancer resource map" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-              <div class="media-fallback" style="display:none;">
+              <img src="screenshots/air-quality.png" alt="Air quality monitoring dashboard"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="media-fallback">
                 <i class="fa-solid fa-leaf fa-2x"></i>
                 <span>Air Quality Monitoring System</span>
               </div>
@@ -349,7 +358,8 @@
               </div>
 
               <p class="muted">
-                Built an IoT monitoring system using Raspberry Pi 5 and sensors, uploading environmental data to Firebase for storage and visualization.
+                Built an IoT monitoring system using Raspberry Pi 5 and sensors, uploading
+                environmental data to Firebase for storage and visualization.
               </p>
 
               <div class="project-details">
@@ -372,17 +382,20 @@
               </div>
 
               <div class="project-links">
-                <a class="btn small" href="https://github.com/PradipShrees/Air-Pollution-Monitoring-Project-1" target="_blank" rel="noreferrer">
+                <a class="btn small" href="https://github.com/PradipShrees/Air-Pollution-Monitoring-Project-1"
+                   target="_blank" rel="noreferrer">
                   <i class="fa-brands fa-github"></i> View on GitHub
                 </a>
               </div>
             </div>
           </article>
 
-          <!-- Project 3 -->
+          <!-- Project 3 — AWS Cloud Labs -->
           <article class="card project-card">
             <div class="project-media">
-              <div class="media-fallback">
+              <img src="screenshots/Load-balancer resource-map.png" alt="AWS load balancer resource map"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="media-fallback" style="display:none;">
                 <i class="fa-brands fa-aws fa-2x"></i>
                 <span>AWS Cloud Labs</span>
               </div>
@@ -391,12 +404,12 @@
             <div class="project-body">
               <div class="project-top">
                 <h3>AWS Cloud Labs</h3>
-                <img src="screenshots/Load-balancer resource-map.png" alt="Load balancer resource map" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                 <span class="tag"><i class="fa-brands fa-aws"></i> VPC • IAM • EC2</span>
               </div>
 
               <p class="muted">
-                Designed and deployed AWS lab environments covering VPC architecture, public/private subnets, endpoints, IAM policies, and budget monitoring.
+                Designed and deployed AWS lab environments covering VPC architecture,
+                public/private subnets, endpoints, IAM policies, and budget monitoring.
               </p>
 
               <div class="project-details">
@@ -414,19 +427,20 @@
                 </div>
                 <div class="detail">
                   <h4>Skills demonstrated</h4>
-                  <p class="muted">Cloud architecture, network segmentation, identity & access control, cost awareness</p>
+                  <p class="muted">Cloud architecture, network segmentation, identity &amp; access control, cost awareness</p>
                 </div>
               </div>
 
               <div class="project-links">
-                <a class="btn small" href="https://github.com/PradipShrees/AWS-LAB-AND-DOCUMENTATION" target="_blank" rel="noreferrer">
+                <a class="btn small" href="https://github.com/PradipShrees/AWS-LAB-AND-DOCUMENTATION"
+                   target="_blank" rel="noreferrer">
                   <i class="fa-brands fa-github"></i> View on GitHub
                 </a>
               </div>
             </div>
           </article>
 
-          <!-- Project 4 — Coming Soon -->
+          <!-- Project 4 — CI/CD Pipeline (Coming Soon) -->
           <article class="card project-card">
             <div class="project-media">
               <div class="media-fallback">
@@ -442,7 +456,8 @@
               </div>
 
               <p class="muted">
-                Automated deployment pipeline using GitHub Actions, with a Kali Linux–powered Raspberry Pi 5 as the self-hosted runner and Docker as the container runtime.
+                Automated deployment pipeline using GitHub Actions, with a Kali Linux–powered
+                Raspberry Pi 5 as the self-hosted runner and Docker as the container runtime.
               </p>
 
               <div class="project-details">
@@ -469,15 +484,16 @@
               </div>
             </div>
           </article>
+
         </div>
       </div>
     </section>
 
-    <!-- Certifications -->
+    <!-- ═══ Certifications ═══════════════════════════════════════ -->
     <section class="section alt" id="certs">
       <div class="container">
         <div class="section-head">
-          <h2>Certifications & Qualifications</h2>
+          <h2>Certifications &amp; Qualifications</h2>
           <p class="muted">What I've achieved and what I'm actively working toward.</p>
         </div>
 
@@ -505,7 +521,7 @@
       </div>
     </section>
 
-    <!-- Experience -->
+    <!-- ═══ Experience ═══════════════════════════════════════════ -->
     <section class="section" id="experience">
       <div class="container">
         <div class="section-head">
@@ -529,7 +545,7 @@
       </div>
     </section>
 
-    <!-- Contact -->
+    <!-- ═══ Contact ══════════════════════════════════════════════ -->
     <section class="section alt" id="contact">
       <div class="container">
         <div class="section-head">
@@ -541,7 +557,8 @@
           <div class="card">
             <h3>Let's connect</h3>
             <p class="muted">
-              If you're hiring for junior networking / cloud / security roles, I'd love to connect and share my labs, projects, and documentation.
+              If you're hiring for junior networking / cloud / security roles, I'd love to connect
+              and share my labs, projects, and documentation.
             </p>
 
             <div class="contact-list">
@@ -549,11 +566,13 @@
                 <i class="fa-regular fa-envelope"></i>
                 <span>pradipshrees0@gmail.com</span>
               </a>
-              <a class="contact-item" href="https://www.linkedin.com/in/pradip-shrees-776b612a1/" target="_blank" rel="noreferrer">
+              <a class="contact-item" href="https://www.linkedin.com/in/pradip-shrees-776b612a1/"
+                 target="_blank" rel="noreferrer">
                 <i class="fa-brands fa-linkedin"></i>
                 <span>linkedin.com/in/pradip-shrees-776b612a1</span>
               </a>
-              <a class="contact-item" href="https://github.com/PradipShrees" target="_blank" rel="noreferrer">
+              <a class="contact-item" href="https://github.com/PradipShrees"
+                 target="_blank" rel="noreferrer">
                 <i class="fa-brands fa-github"></i>
                 <span>github.com/PradipShrees</span>
               </a>
@@ -567,14 +586,17 @@
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container footer-inner">
-        <p class="muted">© <span id="year"></span> Pradip Shrees • Built with HTML/CSS/JS • GitHub Pages</p>
-        <a class="to-top" href="#top"><i class="fa-solid fa-arrow-up"></i> Back to top</a>
-      </div>
-    </footer>
   </main>
+
+  <!-- ═══ Footer ══════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="muted">© <span id="year"></span> Pradip Shrees • Built with HTML/CSS/JS • GitHub Pages</p>
+      <a class="to-top" href="#top">
+        <i class="fa-solid fa-arrow-up"></i> Back to top
+      </a>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>

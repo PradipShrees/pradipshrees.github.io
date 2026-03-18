@@ -325,6 +325,12 @@ h1{
   justify-content:center;
   font-size:28px;
   color:var(--muted);
+  overflow:hidden;
+}
+.profile-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 .profile-info h2{
   margin:2px 0 10px;
@@ -348,22 +354,22 @@ h1{
   display:flex;
   gap:8px;
   margin-top:14px;
-  flex-wrap:wrap;
 }
 .mini-link{
   display:inline-flex;
   align-items:center;
-  gap:7px;
-  color:var(--muted);
-  padding:8px 12px;
-  border-radius:10px;
+  gap:6px;
+  padding:7px 11px;
   border:1px solid var(--line);
   background:rgba(255,255,255,.02);
+  border-radius:var(--radius-sm);
+  color:var(--muted);
   font-size:13px;
   font-weight:500;
   transition:color var(--transition), background var(--transition);
 }
 .mini-link:hover{ color:var(--text); background:rgba(255,255,255,.06); }
+.mini-link i{ font-size:11px; color:var(--accent); }
 
 .note{
   border:1px solid rgba(34,197,94,.2);
@@ -510,34 +516,47 @@ h1{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:16px;
+  /* Align rows so image areas and body areas line up across columns */
+  align-items:start;
 }
+
+/* Project card: flex column so body fills remaining height */
 .project-card{
   padding:0;
   overflow:hidden;
+  display:flex;
+  flex-direction:column;
 }
 
+/* Fixed-height image zone — identical for every card */
 .project-media{
   border-bottom:1px solid var(--line);
-  background:rgba(255,255,255,.02);
-  min-height:160px;
+  background:rgba(255,255,255,.03);
+  height:200px;
+  flex-shrink:0;
   display:flex;
   align-items:center;
   justify-content:center;
   overflow:hidden;
+  position:relative;
 }
+
+/* Screenshot fills the zone, cropped from the top so UI content shows */
 .project-media img{
+  position:absolute;
+  inset:0;
   width:100%;
-  height:auto;
-  max-height:300px;
+  height:100%;
   object-fit:contain;
-  padding:14px;
+  object-position:center;
   transition:transform 300ms ease;
 }
-.project-card:hover .project-media img{ transform:scale(1.02); }
+.project-card:hover .project-media img{ transform:scale(1.03); }
 
+/* Fallback icon shown when there is no image */
 .media-fallback{
   width:100%;
-  height:160px;
+  height:100%;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -548,7 +567,13 @@ h1{
 }
 .media-fallback i{ font-size:28px; opacity:.45; }
 
-.project-body{ padding:20px; }
+/* Project body grows to fill the rest of the card */
+.project-body{
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
 
 .project-top{
   display:flex;
@@ -592,8 +617,10 @@ h1{
 }
 .detail p{ margin:0; font-size:13px; line-height:1.6; }
 
+/* Links row pinned to the bottom of every card body */
 .project-links{
-  margin-top:16px;
+  margin-top:auto;
+  padding-top:16px;
   display:flex;
   gap:8px;
   flex-wrap:wrap;
@@ -709,7 +736,7 @@ h1{
 }
 
 @media (max-width:480px){
-  .footer-inner{ flex-direction:column; align-items:flex-start; }
+  .footer-inner{ flex-direction:column; align-items: center;}
   .timeline-top{ flex-direction:column; align-items:flex-start; gap:6px; }
   .project-top{ flex-direction:column; align-items:flex-start; }
 }
