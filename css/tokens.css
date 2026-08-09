@@ -1,0 +1,154 @@
+/* ============================================================
+   TOKENS — the whole visual system lives here.
+   Change a value in this file and the entire site follows.
+   See DESIGN.md for the reasoning behind each choice.
+   ============================================================ */
+
+/* ---------- Fonts (self-hosted, zero external requests) ---------- */
+
+@font-face {
+  font-family: 'Archivo';
+  src: url('../fonts/archivo-var-latin.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Martian Mono';
+  src: url('../fonts/martianmono-var-latin.woff2') format('woff2-variations');
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---------- Colour ----------
+     Aubergine ground, warm orange signal accent. OKLCH throughout.
+
+     HARD RULE: --accent is never a fill behind text. It is a line, a dot,
+     an underline, a focus ring, or text on the dark ground. Filled buttons
+     use --primary with white text. See DESIGN.md.                       */
+
+  --bg:          oklch(0.165 0.032 340);   /* aubergine ground             */
+  --bg-deep:     oklch(0.132 0.026 340);   /* footer — the one sunken band */
+  --bg-lift:     oklch(0.205 0.038 340);   /* certifications band, raised  */
+  --surface:     oklch(0.235 0.042 340);   /* cards and panels             */
+  --surface-hi:  oklch(0.285 0.048 340);   /* hover / active panels        */
+
+  --ink:         oklch(0.97  0.006 340);   /* body text      — 14.9:1 on bg */
+  --ink-dim:     oklch(0.79  0.018 340);   /* secondary text —  8.4:1 on bg */
+  --ink-faint:   oklch(0.685 0.022 340);   /* small mono labels — 5.8:1 on bg */
+
+  --primary:     oklch(0.52  0.19  350);   /* filled buttons, white text   */
+  --primary-hi:  oklch(0.58  0.20  350);   /* button hover                 */
+  --accent:      oklch(0.78  0.16  60);    /* orange signal  —  8.7:1 on bg */
+  --accent-dim:  oklch(0.66  0.15  60);    /* orange hairlines             */
+
+  --line:        oklch(0.345 0.036 340);   /* hairlines                    */
+  --line-hi:     oklch(0.455 0.048 340);   /* emphasised hairlines         */
+
+  --on-primary:  oklch(0.99  0     0);     /* text on --primary fills      */
+
+  /* Focus ring — orange, because it must never be missed */
+  --focus:       oklch(0.80  0.17  55);
+
+  /* ---------- Type ---------- */
+
+  --font-sans: 'Archivo', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+               Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'Martian Mono', ui-monospace, 'SF Mono', Menlo, Consolas,
+               'Liberation Mono', monospace;
+
+  /* Modular scale, ratio 1.25. Display capped at 80px — below the
+     96px shouting ceiling. */
+  --t-display: clamp(2.5rem,  1.6rem + 4.5vw, 5rem);      /* 40 → 80 */
+  --t-h2:      clamp(1.85rem, 1.4rem + 2.2vw, 2.75rem);   /* 30 → 44 */
+  --t-h3:      clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem);    /* 20 → 24 */
+  --t-lead:    clamp(1.05rem, 0.98rem + 0.4vw, 1.25rem);  /* 17 → 20 */
+  --t-body:    1rem;
+  --t-sm:      0.875rem;
+  --t-xs:      0.75rem;
+
+  --lh-display: 1.04;
+  --lh-heading: 1.16;
+  --lh-body:    1.68;   /* includes +0.06 for light-on-dark */
+
+  --track-display: -0.03em;   /* floor is -0.04em; we stay above it */
+  --track-mono:     0.02em;
+
+  --measure: 68ch;
+
+  /* ---------- Space ----------
+     Deliberately uneven so rhythm varies rather than marching. */
+
+  --s-1:  0.25rem;
+  --s-2:  0.5rem;
+  --s-3:  0.75rem;
+  --s-4:  1rem;
+  --s-5:  1.5rem;
+  --s-6:  2rem;
+  --s-7:  3rem;
+  --s-8:  4rem;
+  --s-9:  6rem;
+
+  --section-y:  clamp(4rem, 2rem + 8vw, 8.5rem);
+  --section-y-tight: clamp(3rem, 2rem + 4vw, 5rem);
+  --gutter:     clamp(1.25rem, 0.5rem + 3vw, 3rem);
+  --maxw:       78rem;
+  --maxw-prose: 46rem;
+
+  /* ---------- Radius & elevation ---------- */
+
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 14px;
+  --r-pill: 999px;
+
+  --shadow-panel: 0 1px 2px oklch(0 0 0 / 0.4),
+                  0 8px 24px -12px oklch(0 0 0 / 0.6);
+  --shadow-lift:  0 2px 4px oklch(0 0 0 / 0.4),
+                  0 18px 44px -16px oklch(0 0 0 / 0.7);
+
+  /* ---------- Motion ----------
+     Exponential ease-outs. No bounce, no elastic. */
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:    cubic-bezier(0.65, 0, 0.35, 1);
+
+  --d-fast:   140ms;
+  --d-mid:    220ms;
+  --d-slow:   420ms;
+  --d-hero:   900ms;
+
+  /* ---------- Z-index — semantic scale, never arbitrary ---------- */
+
+  --z-base:     0;
+  --z-raised:   10;
+  --z-sticky:   100;
+  --z-nav:      200;
+  --z-overlay:  300;
+  --z-skiplink: 400;
+
+  /* ---------- Hero photograph ----------
+     Put your homelab photo at img/hero.jpg, then swap the line below to:
+
+         --hero-image: url('../img/hero.jpg');
+
+     Left as `none`, the hero draws its own gradient-and-topology scene and
+     makes no network request at all. Dark photos work best — it sits behind
+     text at 50% opacity. */
+
+  --hero-image: none;
+}
+
+/* Reduced motion: collapse durations rather than removing feedback. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --d-fast: 1ms;
+    --d-mid:  1ms;
+    --d-slow: 1ms;
+    --d-hero: 1ms;
+  }
+}
